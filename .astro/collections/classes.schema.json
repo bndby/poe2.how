@@ -1,0 +1,36 @@
+{
+  "$ref": "#/definitions/classes",
+  "definitions": {
+    "classes": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "Strength": {
+          "type": "number"
+        },
+        "Dexterity": {
+          "type": "number"
+        },
+        "Intelligence": {
+          "type": "number"
+        },
+        "Weapon": {
+          "type": "string"
+        },
+        "Trait": {
+          "type": "string"
+        },
+        "Icon": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

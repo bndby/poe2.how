@@ -1,0 +1,29 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<ul class="menu">
+  <li class="menu_item">
+      <a href={`/${lang}/`}>
+        {t('nav.home')}
+      </a>
+  </li>
+  <li class="menu_item">
+      <a href={`/${lang}/classes/`}>
+        {t('nav.classes')}
+      </a>
+  </li>
+</ul>
+
+
+<style>
+  .menu {
+    display: flex;
+    gap: 10px;
+  }
+  .menu_item {
+    list-style: none;
+  }
+</style>

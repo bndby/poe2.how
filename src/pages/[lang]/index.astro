@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import { languages } from '../../i18n/ui';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+import Layout from '../../layouts/base.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const classes = await getCollection('classes');
+
+console.log('lang =', classes);
+
+export async function getStaticPaths() {
+    return Object.keys(languages).map(lang => ({
+        params: { lang },
+    }));
+}
+
+const t = useTranslations(lang);
+
+---
+<Layout>
+
+    <h1>{t('nav.home')}</h1>
+
+<ul>
+    <li>{t('nav.classes')}</li>
+</ul>
+
+</Layout>

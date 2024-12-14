@@ -1,0 +1,20 @@
+---
+import { languages } from '@/i18n/ui';
+---
+<ul class="languages">
+  {Object.entries(languages).map(([lang, label]) => (
+    <li class="language">
+      <a href={`/${lang}/`}>{label}</a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .languages {
+    display: flex;
+    gap: 10px;
+  }
+  .language {
+    list-style: none;
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import BaseLayout from '@/layouts/base.astro';
+import MetaClass from '@/components/MetaClass.astro';
+
+const { meta } = Astro.props;
+---
+
+<BaseLayout>
+    <main>
+        <article>
+            <slot />
+        </article>
+        <aside>
+            <MetaClass data={meta}/>
+        </aside>
+    </main>
+</BaseLayout>
+
+<style>
+    main {
+        display: flex;
+        flex-direction: row;
+    }
+    article {
+        flex: 1;
+    }
+    aside {
+        flex: 0 0 200px;
+    }
+</style>

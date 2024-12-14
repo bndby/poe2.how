@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const { data } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="meta-class">
+  <img src={`/img/classes/${data.Icon}`} alt={data.Title} />
+  <div class="meta-class-item">{t('meta.strength')}: {data.Strength}</div>
+  <div class="meta-class-item">{t('meta.dexterity')}: {data.Dexterity}</div>
+  <div class="meta-class-item">{t('meta.intelligence')}: {data.Intelligence}</div>
+  <div class="meta-class-item">{t('meta.weapon')}: {data.Weapon}</div>
+  <div class="meta-class-item">{t('meta.trait')}: {data.Trait}</div>
+</div>
+
+<style>
+  .meta-class {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    float: right;
+  }
+  .meta-class-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+</style>

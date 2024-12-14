@@ -1,0 +1,47 @@
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import Layout from '@/layouts/base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('classes');
+
+  const paths = pages.map(page => { 
+    const [lang, ...slug] = page.slug.split('/');
+    return { params: { lang, slug: slug.join('/') || undefined }, props: page };
+  });
+
+  return paths;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const allClasses = await getCollection('classes');
+const classes = allClasses.filter((cl: { id: string; }) => cl.id.startsWith(`${lang}/`));
+
+const makeLink = (collection, slug) => {
+  return `/${slug.split('/')[0]}/${collection}/${slug.split('/')[1]}`;
+}
+---
+<Layout>
+  <h1>{t('nav.classes')}</h1>
+
+  <p><a href={`/${lang}/classes/ranger`}>{t('class.ranger')}</a></p>
+  <ul>
+    <li><a href={`/${lang}/classes/deadeye`}>{t('class.deadeye')}</a></li>
+    <li><a href={`/${lang}/classes/pathfinder`}>{t('class.pathfinder')}</a></li>
+  </ul>
+
+  <p><a href={`/${lang}/classes/witch`}>{t('class.witch')}</a></p>
+  <ul>
+    <li><a href={`/${lang}/classes/blood-mage`}>{t('class.blood-mage')}</a></li>
+    <li><a href={`/${lang}/classes/infernalist`}>{t('class.infernalist')}</a></li>
+  </ul>
+
+  <!--ul>
+    {classes.map((cl: { slug: any; collection: string; data: { Title?: string | undefined; }; }) => (
+      <li><a href={makeLink(cl.collection, cl.slug)}>{cl.data.Title}</a></li>
+    ))}
+  </ul-->
+</Layout>
